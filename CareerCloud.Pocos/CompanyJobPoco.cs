@@ -7,8 +7,8 @@ using System.Text;
 namespace CareerCloud.Pocos
 {
     [Table("Company_Jobs")]
-    public class CompanyJobPoco:IPoco
-    {        
+    public class CompanyJobPoco : IPoco
+    {
         [Key]
         public Guid Id { get; set; }
         public Guid Company { get; set; }
@@ -19,6 +19,14 @@ namespace CareerCloud.Pocos
         [Column("Is_Company_Hidden")]
         public Boolean IsCompanyHidden { get; set; }
         [Column("Time_Stamp")]
+        [NotMapped]
         public byte[] TimeStamp { get; set; }
+    
+        public virtual CompanyProfilePoco CompanyProfile { get; set; }
+        public virtual ICollection<ApplicantJobApplicationPoco> ApplicantJobApplications { get; set; }
+        public virtual ICollection<CompanyJobSkillPoco> CompanyJobSkills { get; set; }
+        public virtual ICollection<CompanyJobEducationPoco> CompanyJobEducations { get; set; }
+        public virtual ICollection<CompanyJobDescriptionPoco> CompanyJobDescriptions { get; set; }
+
     }
 }

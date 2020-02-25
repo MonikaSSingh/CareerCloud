@@ -17,6 +17,9 @@ namespace CareerCloud.Pocos
         public string SkillLevel { get; set; }
         public int Importance { get; set; }
         [Column("Time_Stamp")]
+        [NotMapped]
         public byte[] TimeStamp { get; set; }
+        
+        public virtual CompanyJobPoco CompanyJob { get; set; }
     }
 }
