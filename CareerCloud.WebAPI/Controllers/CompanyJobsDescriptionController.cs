@@ -12,23 +12,22 @@ namespace CareerCloud.WebAPI.Controllers
 {
     [Route("api/careercloud/company/v1")]
     [ApiController]
-    public class CompanyJobController : ControllerBase
+    public class CompanyJobsDescriptionController : ControllerBase
     {
-        private readonly CompanyJobLogic _logic;
+        private readonly CompanyJobDescriptionLogic _logic;
 
-        public CompanyJobController()
+        public CompanyJobsDescriptionController()
         {
-            var repo = new EFGenericRepository<CompanyJobPoco>();
-            _logic = new CompanyJobLogic(repo);
+            var repo = new EFGenericRepository<CompanyJobDescriptionPoco>();
+            _logic = new CompanyJobDescriptionLogic(repo);
         }
 
         [HttpGet]
-        [Route("Job/{Id}")]
-        public ActionResult GetCompanyJob(Guid Id)
+        [Route("JobsDescription/{Id}")]
+        public ActionResult GetCompanyJobsDescription(Guid Id)
         {
-            CompanyJobPoco poco = _logic.Get(Id);
-
-            if(poco== null)
+            CompanyJobDescriptionPoco poco = _logic.Get(Id);
+            if (poco == null)
             {
                 return NotFound();
             }
@@ -39,12 +38,11 @@ namespace CareerCloud.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("Job")]
-        public ActionResult GetAllCompanyJob()
+        [Route("JobsDescription")]
+        public ActionResult GetAllCompanyJobsDescription()
         {
             var companies = _logic.GetAll();
-
-            if(companies==null)
+            if (companies == null)
             {
                 return NotFound();
             }
@@ -55,24 +53,24 @@ namespace CareerCloud.WebAPI.Controllers
         }
 
         [HttpPost]
-        [Route("Job")]
-        public ActionResult PostCompanyJob([FromBody] CompanyJobPoco[] poco)
+        [Route("JobsDescription")]
+        public ActionResult PostCompanyJobsDescription([FromBody] CompanyJobDescriptionPoco[] poco)
         {
             _logic.Add(poco);
             return Ok();
         }
 
         [HttpPut]
-        [Route("Job")]
-        public ActionResult PutCompanyJob([FromBody] CompanyJobPoco[] poco)
+        [Route("JobsDescription")]
+        public ActionResult PutCompanyJobsDescription([FromBody] CompanyJobDescriptionPoco[] poco)
         {
             _logic.Update(poco);
             return Ok();
         }
 
         [HttpDelete]
-        [Route("Job")]
-        public ActionResult DeleteCompanyJob([FromBody] CompanyJobPoco[] poco)
+        [Route("JobsDescription")]
+        public ActionResult DeleteCompanyJobsDescription([FromBody] CompanyJobDescriptionPoco[] poco)
         {
             _logic.Delete(poco);
             return Ok();

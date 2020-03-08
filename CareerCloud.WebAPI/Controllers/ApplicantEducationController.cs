@@ -23,7 +23,7 @@ namespace CareerCloud.WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("education/{Id}")]
+        [Route("Education/{Id}")]
         public ActionResult GetApplicantEducation(Guid Id)
         {
             ApplicantEducationPoco poco = _logic.Get(Id);
@@ -34,8 +34,46 @@ namespace CareerCloud.WebAPI.Controllers
             else
             {
                 return Ok(poco);
+            }            
+        }
+
+        [HttpGet]
+        [Route("Education")]
+        public ActionResult GetAllApplicantEducation()
+        {
+            var applicants = _logic.GetAll();
+            if(applicants == null)
+            {
+                return NotFound();
             }
-            
+            else
+            {
+                return Ok(applicants);
+            }
+        }
+
+        [HttpPost]
+        [Route("Education")]
+        public ActionResult PostApplicantEducation([FromBody] ApplicantEducationPoco[] pocos)
+        {
+            _logic.Add(pocos);
+            return Ok();
+        }
+
+        [HttpPut]
+        [Route("Education")]
+        public ActionResult PutApplicantEducation([FromBody] ApplicantEducationPoco[] pocos)
+        {
+            _logic.Update(pocos);
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("Education")]
+        public ActionResult DeleteApplicantEducation([FromBody] ApplicantEducationPoco[] pocos)
+        {
+            _logic.Delete(pocos);
+            return Ok();
         }
     }
 }
