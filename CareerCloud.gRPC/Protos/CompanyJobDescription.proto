@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option csharp_namespace = "CareerCloud.gRPC.Protos";
+
+import "google/protobuf/Empty.proto";
+
+
+package CareerCloud.gRPC;
+
+service CompanyJobDescription{
+	rpc GetCompanyJobDescription(IdRequestJobDescription) returns(CompanyJobDescriptionPayLoad);
+	rpc CreateCompanyJobDescription(CompanyJobDescriptionPayLoad) returns(google.protobuf.Empty);
+	rpc UpdateCompanyJobDescription(CompanyJobDescriptionPayLoad) returns(google.protobuf.Empty);
+	rpc DeleteCompanyJobDescription(CompanyJobDescriptionPayLoad) returns(google.protobuf.Empty);
+}
+
+message IdRequestJobDescription{
+	string Id = 1;
+}
+
+
+message CompanyJobDescriptionPayLoad{
+	    string Id = 1;
+        string Job = 2;
+        string JobName = 3;
+        string JobDescriptions = 4;
+}

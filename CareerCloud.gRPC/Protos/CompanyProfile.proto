@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "CareerCloud.gRPC.Protos";
+
+import "google/protobuf/Empty.proto";
+import "google/protobuf/timestamp.proto";
+
+
+package CareerCloud.gRPC;
+
+service CompanyProfile{
+	rpc GetCompanyProfile(IdRequestCompanyProfile) returns(CompanyProfilePayLoad);
+	rpc CreateCompanyProfile(CompanyProfilePayLoad) returns(google.protobuf.Empty);
+	rpc UpdateCompanyProfile(CompanyProfilePayLoad) returns(google.protobuf.Empty);
+	rpc DeleteCompanyProfile(CompanyProfilePayLoad) returns(google.protobuf.Empty);
+}
+
+message IdRequestCompanyProfile{
+	string Id =1;
+}
+
+message CompanyProfilePayLoad{
+		string Id = 1;
+        google.protobuf.Timestamp RegistrationDate = 2;
+		string CompanyWebsite = 3;
+        string ContactPhone = 4;
+        string ContactName = 5;
+        bytes CompanyLogo = 6;
+}
